@@ -664,6 +664,10 @@ progress {
   margin-left: auto;
 }
 
+.container-fluid{
+  scroll-snap-stop:always;
+}
+
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
