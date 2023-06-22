@@ -462,6 +462,14 @@ legend + * {
   padding: 0;
 }
 
+
+
+.desaturated svg{
+  filter: saturate(1);
+
+}
+
+
 ::file-selector-button {
   font: inherit;
   -webkit-appearance: button;
