@@ -42,7 +42,9 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 189, 93, 56;
+
+  --bs-tester: rgb(25, 116, 48);
+  --bs-primary-rgb: 54, 124, 43;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -73,8 +75,8 @@
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-2xl: 2rem;
   --bs-border-radius-pill: 50rem;
-  --bs-link-color: #bd5d38;
-  --bs-link-hover-color: #974a2d;
+  --bs-link-color: #30a588;
+  --bs-link-hover-color: #1f7a6b;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
@@ -90,6 +92,35 @@
     scroll-behavior: smooth;
   }
 }
+
+.media-horizontal-scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 30%;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  
+}
+
+.media-element{
+  display:grid;
+  gap: 0.5rem;
+  background: rgb(245, 245, 245);
+  border: solid 0.01rem rgba(211, 211, 211, 0.719);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.media-element > img{
+  inline-size: 100%;
+  border:solid 0.07rem lightgray;
+  aspect-ratio: 5/4;
+  object-fit: cover;
+}
+
+
+
 
 body {
   margin: 0;
@@ -4165,8 +4196,8 @@ textarea.form-control-lg {
 }
 
 .navbar-dark {
-  --bs-navbar-color: rgba(255, 255, 255, 0.55);
-  --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
+  --bs-navbar-color: rgba(255, 255, 255, 0.7);
+  --bs-navbar-hover-color: rgba(255, 255, 255, 0.95);
   --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
   --bs-navbar-active-color: #fff;
   --bs-navbar-brand-color: #fff;
@@ -7686,7 +7717,7 @@ textarea.form-control-lg {
 }
 
 .mb-3 {
-  margin-bottom: 1rem !important;
+  /* margin-bottom: 1rem !important; */
 }
 
 .mb-4 {
@@ -10962,7 +10993,7 @@ p.lead {
   margin-right: 0;
 }
 .social-icons .social-icon:hover {
-  background-color: #bd5d38;
+  background-color: #0077b5;
 }
 
 .dev-icons {
