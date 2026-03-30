@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Chair Monitor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            transition: background-color 0.5s ease;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        #status-indicator {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: transform 0.3s ease;
+        }
+        .occupied { background-color: #ff4d4d; color: white; transform: scale(1.1); }
+        .empty { background-color: #4CAF50; color: white; transform: scale(1.0); }
+        
+        h1 { color: #333; margin-bottom: 0; }
+        p { color: #666; font-size: 1.2rem; }
+        .timestamp { font-size: 0.8rem; color: #999; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="status-text">Checking...</h1>
+    <div id="status-indicator">⏳</div>
+    <p id="raw-value">Sensor: --</p>
+    <div class="timestamp" id="last-update">Last update: --</div>
+</div>
+
+<script>
+    // Replace this with your actual Firebase Realtime Database URL
+    const DATABASE_URL = "https://occupancy-2d56f-default-rtdb.firebaseio.com/chair_data.json";
+
+    async function fetchData() {
+        try {
+            const response = await fetch(DATABASE_URL);
+            const data = await response.json();
+
+            if (data) {
+                const statusText = document.getElementById('status-text');
+                const indicator = document.getElementById('status-indicator');
+                const rawVal = document.getElementById('raw-value');
+                const timestamp = document.getElementById('last-update');
+
+                statusText.innerText = data.status;
+                rawVal.innerText = `Pressure: ${data.raw_value}`;
+                timestamp.innerText = `Last update: ${data.timestamp}`;
+
+                if (data.status === "Occupied") {
+                    indicator.innerText = "👤";
+                    indicator.className = "occupied";
+                    document.body.style.backgroundColor = "#fff1f1";
+                } else {
+                    indicator.innerText = "🪑";
+                    indicator.className = "empty";
+                    document.body.style.backgroundColor = "#f1fff1";
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching from Firebase:", error);
+        }
+    }
+
+    // Refresh every 2 seconds
+    setInterval(fetchData, 2000);
+    fetchData(); // Initial call
+</script>
+
+</body>
+</html>
